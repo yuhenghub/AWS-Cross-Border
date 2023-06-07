@@ -11,10 +11,10 @@ class PipelineCdkStack(Stack):
     def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
-        # Creates a CodeCommit repository called 'CICD_Workshop'
+        # Creates a CodeCommit repository called 'CICD_Sample'
         repo = codecommit.Repository(
-            self, 'CICD_Workshop',
-            repository_name='CICD_Workshop',
+            self, 'CICD_Sample',
+            repository_name='CICD_Sample',
             description='Repository for my application code and infrastructure'
         )
 
@@ -22,5 +22,3 @@ class PipelineCdkStack(Stack):
             self, 'CodeCommitRepositoryUrl',
             value=repo.repository_clone_url_http
         )
-
-git remote add origin https://git-codecommit.us-east-1.amazonaws.com/v1/repos/CICD_Workshop
