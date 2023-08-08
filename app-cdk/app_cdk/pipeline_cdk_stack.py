@@ -18,8 +18,8 @@ class PipelineCdkStack(Stack):
 
         # Pipeline code will go here
         repo = codecommit.Repository(
-            self, 'CICD_Workshop',
-            repository_name='CICD_Workshop',
+            self, 'Cross_Border_CICD',
+            repository_name='Cross_Border_CICD',
             description='Repository for my application code and infrastructure'
         )
 
@@ -39,7 +39,7 @@ class PipelineCdkStack(Stack):
         )
 
         docker_build_project = codebuild.PipelineProject(
-            self, "Docker Build",
+            self, "Docker Push ECR",
             build_spec=codebuild.BuildSpec.from_source_filename("./buildspec_docker.yml"),
             environment=codebuild.BuildEnvironment(
                 build_image=codebuild.LinuxBuildImage.STANDARD_5_0,
