@@ -14,7 +14,7 @@ from aws_cdk import (
 
 class PipelineCdkStack(Stack):
 
-  def __init__(self, scope: Construct, id: str, ecr_repository, test_app_fargate, ** kwargs) -> None:
+  def __init__(self, scope: Construct, id: str, ecr_repository, ** kwargs) -> None:
       super().__init__(scope, id, **kwargs)
 
       # Pipeline code will go here
@@ -122,16 +122,16 @@ class PipelineCdkStack(Stack):
           actions=[docker_build_action]
       )
 
-      pipeline.add_stage(
-          stage_name='Deploy-Test',
-          actions=[
-              codepipeline_actions.EcsDeployAction(
-                  action_name='Deploy-Test',
-                  service=test_app_fargate.service,
-                  input=docker_build_output
-              )
-          ]
-      )
+    #   pipeline.add_stage(
+    #       stage_name='Deploy-Test',
+    #       actions=[
+    #           codepipeline_actions.EcsDeployAction(
+    #               action_name='Deploy-Test',
+    #               service=test_app_fargate.service,
+    #               input=docker_build_output
+    #           )
+    #       ]
+    #   )
 
       CfnOutput(
           self, 'CodeCommitRepositoryUrl',
